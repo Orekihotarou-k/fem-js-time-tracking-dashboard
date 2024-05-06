@@ -1,44 +1,39 @@
-// fetch and import data from json
-const data = "../data.json"
+// fetch and import data from json 
+const dataUrl = "../data.json"
 
-async function getTimeData() {
-    const response = await fetch(data)
-    const timeData = await response.json()
-    return timeData
+async function fetchData() {
+    try {
+        const response = await fetch(dataUrl)
+        const timeData = await response.json()
+        return timeData
+    } catch {
+        // if there is an error, display an error message
+        console.log("Error fetching data")
+        return[]
+    }
 }
 
-// return fetched data 
-function selectTimeFrame() {
-    return getTimeData()
+// reusable function to display data
+function updateWorkHours(timeData, currentWorkHourChoice, previousWorkHourChoice, timeframe) {
+    const currentWorkHours = document.querySelectorAll(currentWorkHourChoice)  
+    const previousWorkHours = document.querySelectorAll(previousWorkHourChoice)  
+
+    timeData.forEach((e, i) => {
+        currentWorkHours[i].innerHTML = `${e.timeframes[timeframe].current}hrs`
+        previousWorkHours[i].innerHTML = `${e.timeframes[timeframe].current}hrs`
+    })
 }
 
-// function to display data
+// get button elements 
 const dailyToggle = document.querySelector(".dailyToggle")
+const weeklyToggle = document.querySelector(".weeklyToggle")
+const monthlyToggle = document.querySelector(".monthlyToggle")
 
-dailyToggle.addEventListener("click", async () => {
-    const timeData = await selectTimeFrame()
+async function handleToggleClick(timeframe) {
+    const timeData = await fetchData()
+    updateWorkHours(timeData, ".time", ".previous", timeframe)
+}
 
-    timeData.forEach(element => {
-    const chosenTimeFrame = "daily"
-
-    const dailyCurrentData = element.timeframes[chosenTimeFrame]
-    const currentData = dailyCurrentData.current
-    const previousData = dailyCurrentData.previous
-
-    console.log(currentData)
-    
-    // display the changes
-    const currentWorkHour = document.querySelectorAll(".time")
-    const previousWorkHour = document.querySelectorAll(".previous")
-
-    currentWorkHour.forEach(e => {
-        e.innerText = currentData + "hrs"
-    })
-
-    previousWorkHour.forEach(e => {
-        e.innerText = previousData + "hrs"
-    })
-
-    })
-
-})
+dailyToggle.addEventListener("click", () => handleToggleClick("daily"))
+weeklyToggle.addEventListener("click", () => handleToggleClick("weekly"))
+monthlyToggle.addEventListener("click", () => handleToggleClick("monthly"))
