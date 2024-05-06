@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+/* root */
+:root {
+    --clr-Blue: #5847eb;
+
+    --clr-Light-red-work: #ff8c66;
+    --clr-Soft-blue-play: #56c2e6;
+    --clr-Light-red-study: #ff5c7c;
+    --clr-Lime-green-exercise: #4acf81;
+    --clr-Violet-social: #7536d3;
+    --clr-Soft-orange-self-care: #f1c65b;
+
+    --clr-Very-dark-blue: #0f1424;
+    --clr-Dark-blue: #1c1f4a;
+    --clr-Desaturated-blue: #6f76c8;
+    --clr-Pale-Blue: #bdc1ff;
+
+    --ff-primary: "Rubik", sans-serif;
+    --fs-body: 1.25rem;
+    --fs-heading: clamp(1.35rem, 6vw, 2.5rem);
+    --fw-300: 300;
+    --fw-400: 400;
+    --fw-500: 500;
+}
+
+
+/* reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+button {
+    font: inherit;
+    border: none;
+    background: none;
+}
+
+body {
+    font-family: var(--ff-primary);
+    font-weight: var(--fw-300);
+    font-size: var(--fs-body);
+    line-height: 1.6;
+    color: var(--clr-Desaturated-blue);
+    background: var(--clr-Very-dark-blue);
+}
+
+
+/* helper classes */
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+
+/* typography */
+.tracker-title, .time, .username {
+    color: var(--clr-Pale-Blue);
+    font-weight: var(--fw-600);
+}
+
+.username {
+    font-weight: var(--fw-400);
+}
+
+.time {
+    font-size: var(--fs-heading);
+    font-weight: var(--fw-400);
+}
+
+.tracker-title, .time {
+    color: hsl(236, 100%, 97%);
+}
+
+button {
+    color: inherit;
+}
+
+button:active, button:focus {
+    color: var(--clr-Pale-Blue);
+    font-weight: var(--fw-400);
+}
+
+span, .username {
+    line-height: 1;
+}
+
+span, .tracker-title {
+    font-size: 1rem;
+    font-weight: var(--fw-400);
+}
+
+.previous {
+    font-size: 1rem;
+}
+
+
+/* components */
+.dashboard-header, .tracker {
+    padding: 1.5rem;
+    border-radius: .8rem;
+    background: var(--clr-Dark-blue);
+    position: relative;
+}
+
+.dashboard-header {
+    overflow: hidden;
+}
+
+.dashboard-tracker {
+    gap: 1rem;
+    border-radius: .8rem;
+    margin-bottom: 2rem;  
+    position: relative;
+    z-index: 2;  
+}
+
+.dashboard-header::before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 60%;
+    background: var(--clr-Blue);
+    top: 0;
+    left: 0;
+    border-radius: .8rem;
+}
+
+
+/* general styles */
+.user-image {
+    width: 3.5rem;
+    border-radius: 50%;
+    border: 2px solid var(--clr-Pale-Blue);
+}
+
+
+/* layout styles */
+.dashboard-wrapper {
+    display: grid;
+    place-items: center;
+    min-height: 100dvh;
+}
+
+.dashboard {
+    width: min(85%, 70em);
+    display: grid;
+    gap: 3.35rem;
+    margin: 2rem 0;
+    grid-auto-columns: 1fr;
+    grid-template-areas:
+    "one"
+    "two"
+    "three"
+    "four"
+    "five"
+    "six"
+    "seven"
+    ;
+}
+
+.dashboard > *:nth-child(1) {
+    grid-area: one;
+}
+
+.dashboard > *:nth-child(2) {
+    grid-area: two;
+}
+
+.dashboard > *:nth-child(3) {
+    grid-area: three;
+}
+
+.dashboard > *:nth-child(4) {
+    grid-area: four;
+}
+
+.dashboard > *:nth-child(5) {
+    grid-area: five;
+}
+
+.dashboard > *:nth-child(6) {
+    grid-area: six;
+}
+
+.dashboard > *:nth-child(7) {
+    grid-area: seven;
+}
+
+nav {
+    justify-content: space-between;
+}
+
+.tracker {
+    align-items: initial;
+    justify-content: space-between;
+    position: relative;
+}
+
+.tracker::before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background:
+     var(--clr-Light-red-work)
+     url(images/icon-work.svg)
+     no-repeat
+     top -5%
+     right 5%;
+    background-size: 20%;
+    top: -2.25rem;
+    left: 0;
+    border-radius: .8rem;
+    z-index: -1;
+}
+
+.tracker:nth-child(3)::before {
+    background-image: url(images/icon-play.svg);
+    background-color: var(--clr-Soft-blue-play);
+}
+
+.tracker:nth-child(4)::before {
+    background-image: url(images/icon-study.svg);
+    background-color: var(--clr-Light-red-study);
+}
+
+.tracker:nth-child(5)::before {
+    background-image: url(images/icon-exercise.svg);
+    background-color: var(--clr-Lime-green-exercise);
+}
+
+.tracker:nth-child(6)::before {
+    background-image: url(images/icon-social.svg);
+    background-color: var(--clr-Violet-social);
+}
+
+.tracker:nth-child(7)::before {
+    background-image: url(images/icon-self-care.svg);
+    background-color: var(--clr-Soft-orange-self-care);
+}
+
+.tracker > .col {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
