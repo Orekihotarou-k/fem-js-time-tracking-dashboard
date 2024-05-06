@@ -1,19 +1,21 @@
-// get the buttons
-const dailyToggle = document.querySelector(".dailyToggle")
-const weeklyToggle = document.querySelector(".weeklyToggle")
-const monthlyToggle = document.querySelector(".dmonthlyToggle")
-
-// get the dynamic elements
-const currentTime = document.querySelector(".time")
-const previousTime =  document.querySelector(".previous")
-
-// import data from JSON
+// fetch and import data from json
 const data = ("../data.json")
 
 async function getTimeData() {
     const response = await fetch(data)
     const timeData = await response.json()
-    console.log(timeData)
+    return timeData
 }
 
-getTimeData()
+// return fetched data 
+function selectTimeFrame() {
+    return getTimeData()
+}
+
+// function to display data
+const dailyToggle = document.querySelector(".dailyToggle")
+
+dailyToggle.addEventListener("click", async () => {
+    const timeData = await selectTimeFrame()
+    console.log(timeData)
+})
