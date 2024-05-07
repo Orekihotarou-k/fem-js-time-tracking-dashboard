@@ -68,6 +68,12 @@ body {
 
 .username {
     font-weight: var(--fw-400);
+    font-size: clamp(1.35rem, 4vw, 2.5rem);
+    color: hsl(236, 100%, 97%);
+}
+
+span {
+    color: var(--clr-Pale-Blue);
 }
 
 .time {
@@ -80,11 +86,11 @@ body {
 }
 
 button {
-    color: inherit;
+    color: hsl(236, 100%, 97%);
 }
 
 button:active, button:focus {
-    color: var(--clr-Pale-Blue);
+    color: #fff;
     font-weight: var(--fw-400);
 }
 
@@ -150,7 +156,7 @@ span, .tracker-title {
 }
 
 .dashboard {
-    width: min(85%, 70em);
+    width: min(85%, 50em);
     display: grid;
     gap: 3.35rem;
     margin: 2rem 0;
@@ -251,4 +257,84 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+
+/* media query */
+@media (min-width: 55em) {
+    .time {
+        line-height: 1;
+    }
+
+    .username {
+        font-weight: var(--fw-400);
+    }
+
+    button  {
+        font-size: 1.15rem;
+        cursor: pointer;
+    }
+
+    button:hover {
+        font-weight: var(--fw-400);
+    }
+
+    .dashboard {
+        gap: 1.5rem;
+        grid-template-areas: 
+        "one two three four"
+        "one five six seven"
+        ;
+    }
+
+    .dashboard-header {
+        display: grid;
+        gap: 3rem;
+    }
+
+    .dashboard-header::before {
+        height: 65%;
+    }
+
+    .tracker > *:nth-child(2) {
+        gap: .2rem;
+        align-items: initial;
+        flex-direction: column;
+        margin-top: 1.75rem;
+    }
+
+    .tracker {
+        height: 11rem;
+    }
+
+    .tracker {
+        margin-top: 2rem;
+        cursor: pointer;
+    }
+
+    .tracker:hover {
+        background: var(--clr-Desaturated-blue);
+    }
+
+    .dashboard-tracker {
+        align-items: initial;
+        flex-direction: column;
+    }
+
+    nav {
+        flex-direction: column;
+    }
+
+    button {
+        display: block;
+        width: 100%;
+        text-align: left;
+    }
+
+    .user-image {
+        width: 5rem;
+    }
+
+
+
 }
